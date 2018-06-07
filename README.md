@@ -40,7 +40,7 @@ Note that in this example there is no need to pre-create any service account or 
 
 Once JupyterHub has finished deploying open it from your browser.
 
-With the template loaded, you could also instead have deployed the example by selecting _Add from Project_ in the web console and then selecting on _JupyterHub Local Spawner POC#1_ from the available templates.
+With the template loaded, you could also instead have deployed the example by selecting _Add to Project_, then _Select from Project_, in the web console and selecting on _JupyterHub Local Spawner POC#1_ from the available templates.
 
 Deleting the Application
 ------------------------
