@@ -29,3 +29,14 @@ class DefaultUserLocalProcessSpawner(LocalProcessSpawner):
         return preexec
 
 c.JupyterHub.spawner_class = DefaultUserLocalProcessSpawner
+
+idle_timeout = os.environ.get('JUPYTERHUB_IDLE_TIMEOUT')
+
+if not idle_timeout and not int(idle_timeout):
+    c.JupyterHub.services = [
+        {
+            'name': 'cull-idle',
+            'admin': True,
+            'command': ['cull-idle-servers', '--timeout=%s' % idle_timeout],
+        }
+    ]
