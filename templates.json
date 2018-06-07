@@ -20,6 +20,12 @@
                     "required": true
                 },
                 {
+                    "name": "JUPYTERHUB_MEMORY",
+                    "description": "Amount of memory available.",
+                    "value": "512Mi",
+                    "required": true
+                },
+                {
                     "name": "JUPYTERHUB_CONFIG",
                     "value": "",
                     "required": false
@@ -239,6 +245,11 @@
                                         "name": "wait-for-database",
                                         "image": "${JUPYTERHUB_IMAGE}",
                                         "command": [ "wait-for-database" ],
+                                        "resources": {
+                                            "limits": {
+                                                "memory": "${JUPYTERHUB_MEMORY}"
+                                            }
+                                        },
                                         "env": [
                                             {
                                                 "name": "JUPYTERHUB_DATABASE_PASSWORD",
@@ -261,6 +272,11 @@
                                                 "protocol": "TCP"
                                             }
                                         ],
+                                        "resources": {
+                                            "limits": {
+                                                "memory": "${JUPYTERHUB_MEMORY}"
+                                            }
+                                        },
                                         "env": [
                                             {
                                                 "name": "JUPYTERHUB_SERVICE_NAME",
