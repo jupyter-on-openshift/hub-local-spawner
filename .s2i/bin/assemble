@@ -2,6 +2,6 @@
 
 set -x
 
-mv /tmp/src/setup-volume.sh /opt/app-root/bin
+mv /tmp/src/script/* /opt/app-root/bin
 
 exec /opt/app-root/builder/assemble
