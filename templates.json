@@ -49,6 +49,11 @@
                     "generate": "expression",
                     "from": "[a-zA-Z0-9]{16}",
                     "required": true
+                },
+                {
+                    "name": "DATA_VOLUME_SIZE",
+                    "value": "1Gi",
+                    "required": true
                 }
             ],
             "objects": [
@@ -188,7 +193,7 @@
                         ],
                         "resources": {
                             "requests": {
-                                "storage": "1Gi"
+                                "storage": "${DATA_VOLUME_SIZE}"
                             }
                         }
                     }
