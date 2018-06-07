@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -x
+
+wait-for-database
+
+exec /opt/app-root/builder/run
