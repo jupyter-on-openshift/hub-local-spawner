@@ -32,7 +32,7 @@ c.JupyterHub.spawner_class = DefaultUserLocalProcessSpawner
 
 idle_timeout = os.environ.get('JUPYTERHUB_IDLE_TIMEOUT')
 
-if not idle_timeout and not int(idle_timeout):
+if idle_timeout and int(idle_timeout):
     c.JupyterHub.services = [
         {
             'name': 'cull-idle',
