@@ -36,8 +36,6 @@ oc new-app --template poc-hub-local-spawner-1 \
   --param APPLICATION_NAME=jupyterhub
 ```
 
-Note that in this example there is no need to pre-create any service account or setup roles as the template will create these for you.
-
 Once JupyterHub has finished deploying open it from your browser.
 
 With the template loaded, you could also instead have deployed the example by selecting _Add to Project_, then _Select from Project_, in the web console and selecting on _JupyterHub Local Spawner POC#1_ from the available templates.
@@ -48,7 +46,7 @@ Deleting the Application
 To delete the example JupyterHub instance which was deployed, run:
 
 ```
-oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=poc-hub-local-spawner-1
+oc delete all,configmap,pvc --selector app=poc-hub-local-spawner-1
 ```
 
 How does this Example Work
