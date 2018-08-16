@@ -12,7 +12,7 @@ A template is provided for deploying this example. The one template will create 
 To create a deployment directly from the template run:
 
 ```
-oc new-app https://raw.githubusercontent.com/jupyter-on-openshift/poc-hub-local-spawner/master/templates.json
+oc new-app https://raw.githubusercontent.com/jupyter-on-openshift/poc-hub-local-spawner/master/templates/jupyterhub.json
 ```
 
 The name of the deployment created will be ``jupyterhub``. If you want to change the name, supply the additional option ``--param APPLICATION_NAME=jupyterhub``.
