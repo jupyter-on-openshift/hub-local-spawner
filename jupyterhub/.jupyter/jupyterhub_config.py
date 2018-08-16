@@ -6,7 +6,7 @@ class DefaultUserLocalProcessSpawner(LocalProcessSpawner):
 
     def user_env(self, env):
         env['USER'] = 'default'
-        env['HOME'] = '/opt/app-root/data/%s' % self.user.name
+        env['HOME'] = '/opt/app-root/notebooks/%s' % self.user.name
         env['SHELL'] = '/bin/bash'
         return env
     
@@ -22,9 +22,8 @@ class DefaultUserLocalProcessSpawner(LocalProcessSpawner):
 
     def make_preexec_fn(self, name):
         def preexec():
-            home = '/opt/app-root/data/%s' % name
-            if not os.path.exists(home):
-                os.mkdir(home)
+            home = '/opt/app-root/notebooks/%s' % name
+            os.makedirs(home, exist_ok=True)
             os.chdir(home)
         return preexec
 
