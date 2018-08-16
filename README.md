@@ -1,8 +1,7 @@
 JupyterHub (Local Spawner)
 --------------------------
 
-This repository contains an example of a customised deployment of JupyterHub for OpenShift, which creates notebook instances as local processes within the same pod as JupyterHub is running. It uses an image for running JupyterHub on OpenShift as an S2I builder to create the customised image containing configuration to use the local process spawner. Along with JupyterHub, a PostgreSQL database is run. These run in separate containers of a single pod. A persistent volume is used to store data for both the database and JupyterHub. Any work done through a Jupyter notebook instance is also persistent across restarts.
-
+This repository contains an example of a customised deployment of JupyterHub for OpenShift, which creates notebook instances as local processes within the same pod as JupyterHub is running. It uses an image for running JupyterHub on OpenShift as an S2I builder to create the customised image containing configuration to use the local process spawner. A SQLite database is used to track users. A persistent volume is used to store data for both the database and JupyterHub. Any work done through a Jupyter notebook instance is also persistent across restarts.
 
 Deploying the Example
 ---------------------

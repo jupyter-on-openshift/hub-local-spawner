@@ -36,17 +36,6 @@
             "required": false
         },
         {
-            "name": "DATABASE_MEMORY",
-            "value": "256Mi",
-            "required": true
-        },
-        {
-            "name": "DATABASE_PASSWORD",
-            "generate": "expression",
-            "from": "[a-zA-Z0-9]{16}",
-            "required": true
-        },
-        {
             "name": "DATA_VOLUME_SIZE",
             "value": "1Gi",
             "required": true
@@ -225,20 +214,6 @@
                                 "name": "${APPLICATION_NAME}-hub-img:latest"
                             }
                         }
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChangeParams": {
-                            "automatic": true,
-                            "containerNames": [
-                                "postgresql"
-                            ],
-                            "from": {
-                                "kind": "ImageStreamTag",
-                                "name": "postgresql:9.5",
-                                "namespace": "openshift"
-                            }
-                        }
                     }
                 ],
                 "replicas": 1,
@@ -265,7 +240,7 @@
                                 ],
                                 "resources": {
                                     "limits": {
-                                        "memory": "${DATABASE_MEMORY}"
+                                        "memory": "${JUPYTERHUB_MEMORY}"
                                     }
                                 },
                                 "volumeMounts": [
@@ -278,47 +253,6 @@
                             }
                         ],
                         "containers": [ 
-                            {
-                                "name": "postgresql",
-                                "image": "postgresql",
-                                "env": [
-                                    {
-                                        "name": "POSTGRESQL_USER",
-                                        "value": "jupyterhub"
-                                    },
-                                    {
-                                        "name": "POSTGRESQL_PASSWORD",
-                                        "value": "${DATABASE_PASSWORD}"
-                                    },
-                                    {
-                                        "name": "POSTGRESQL_DATABASE",
-                                        "value": "jupyterhub"
-                                    }
-                                ],
-                                "livenessProbe": {
-                                    "tcpSocket": {
-                                        "port": 5432
-                                    }
-                                },
-                                "ports": [
-                                    {
-                                        "containerPort": 5432,
-                                        "protocol": "TCP"
-                                    }
-                                ],
-                                "resources": {
-                                    "limits": {
-                                        "memory": "${DATABASE_MEMORY}"
-                                    }
-                                },
-                                "volumeMounts": [
-                                    {
-                                        "mountPath": "/var/lib/pgsql/data",
-                                        "name": "data",
-                                        "subPath": "postgresql"
-                                    }
-                                ]
-                            },
                             {
                                 "name": "jupyterhub",
                                 "image": "${JUPYTERHUB_IMAGE}",
@@ -341,14 +275,6 @@
                                     {
                                         "name": "JUPYTERHUB_IDLE_TIMEOUT",
                                         "value": "${JUPYTERHUB_IDLE_TIMEOUT}"
-                                    },
-                                    {
-                                        "name": "JUPYTERHUB_DATABASE_PASSWORD",
-                                        "value": "${DATABASE_PASSWORD}"
-                                    },
-                                    {
-                                        "name": "JUPYTERHUB_DATABASE_HOST",
-                                        "value": "localhost"
                                     },
                                     {
                                         "name": "JUPYTERHUB_COOKIE_SECRET",
